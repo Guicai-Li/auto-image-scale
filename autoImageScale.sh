@@ -1,16 +1,15 @@
 #!/bin/sh  
-rm -rf 1x  
-rm -rf 2x 
-rm -rf 3x 
-mkdir 1x  
-mkdir 2x 
-mkdir 3x 
   
+#将@6倍图自动缩放为@1 @2 @3倍图
+path="ProcessedImages"
+if [[ ! -x "$path" ]]; then
+	mkdir "$path"
+fi
 for img in `ls *.png`  
 do  
-name1x=1x/${img%@*}.png  
-name2x=2x/${img%@*}@2x.png  
-name3x=3x/${img%@*}@3x.png
+name1x=$path/${img%@*}.png  
+name2x=$path/${img%@*}@2x.png  
+name3x=$path/${img%@*}@3x.png
 WIDTH=`identify ${img} | cut -f 3 -d " " | sed s/x.*//` #width
 HEIGHT=`identify ${img} | cut -f 3 -d " " | sed s/.*x//` #height
 echo $WIDTH
@@ -36,4 +35,5 @@ echo $dw
 dh=`echo "${HEIGHT}/2" |bc`
 echo $dh
 convert -resize $dwx$dh ${img} ${name3x}
+rm $img
 done
