@@ -19,7 +19,7 @@
 	git clone https://github.com/Guicai-Li/auto-image-scale.git
 	cd ios-icon-generator
 	chmod 777 autoImageScale.sh</pre>
-3. 使用
+3. 将脚本autoImageScale.sh放到需要处理图片的文件夹中使用
 
 	<pre>
 	➜  auto-image-scale git:(master) ✗ ./autoImageScale.sh 
